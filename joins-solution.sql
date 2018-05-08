@@ -12,8 +12,7 @@ ORDER BY "line_items"."id";
 
 -- 3. Which warehouses have cheetos?
 
-SELECT "warehouse"."warehouse"
-FROM "warehouse"
+SELECT "warehouse"."warehouse" FROM "warehouse"
 JOIN "warehouse_product" ON "warehouse"."id" = "warehouse_product"."warehouse_id"
 JOIN "products" ON "warehouse_product"."product_id" = "products"."id"
 WHERE "products"."description" = 'cheetos';
@@ -43,3 +42,6 @@ SELECT COUNT(*) FROM "products";
 
 -- 8. What is the total available on-hand quantity of diet pepsi?
 
+SELECT SUM("on_hand") FROM "warehouse_product"
+JOIN "products" ON "products"."id" = "warehouse_product"."product_id"
+WHERE "products"."description" = 'diet pepsi';
